@@ -1,0 +1,325 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:IntilaQ.ComputerTests.Windows"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ViewModels="using:IntilaQ.ComputerTests.Client.ViewModels"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Tools="using:IntilaQ.ComputerTests.Client.Tools"
+      xmlns:dataVisualization="using:Telerik.UI.Xaml.Controls.DataVisualization"
+      xmlns:Core1="using:Telerik.Core"
+      xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+      xmlns:Converters="using:IntilaQ.ComputerTests.Windows.Converters"
+      x:Class="IntilaQ.ComputerTests.Windows.MainPage"
+      mc:Ignorable="d"
+      d:DesignWidth="2000"
+      RequestedTheme="Light">
+
+    <Page.Resources>
+        <Converters:BooleanToNonVisibilityConverter x:Key="BooleanToNonVisibilityConverter" />
+        <Core1:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Tools:AnswerTestToChosenAnswerConverter x:Key="AnswerTestToChosenAnswerConverter" />
+
+        <Style x:Key="LvItemStyle"
+               TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border x:Name="border"
+                                Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected" />
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                                          Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                     Value="LightBlue" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedUnfocused">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                                          Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                     Value="SkyBlue" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <ViewModels:MainViewModdel />
+    </Page.DataContext>
+
+    <Grid Background="AliceBlue">
+
+        <Image Source="Assets/intilaq.png"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Left"
+               Width="200"
+               Margin="80,40" />
+
+        <Hub Header="IntilaQ testing platform">
+            <Hub.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Padding="40,0"
+                               Foreground="DarkGreen"
+                               FontSize="28"
+                               FontWeight="Bold" />
+                </DataTemplate>
+            </Hub.HeaderTemplate>
+
+            <HubSection Padding="80,40,40,0"
+                        Header="Your profile">
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Vertical"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Center"
+                                    Width="280"
+                                    Margin="0,10,0,0">
+                            <TextBlock Text="Fullname"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Padding="0,10" />
+                            <TextBox Text="{Binding CandidateUser.Fullname, Mode=TwoWay}" />
+                            <TextBlock Text="Email"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Padding="0,10" />
+                            <TextBox Text="{Binding CandidateUser.Email, Mode=TwoWay}" />
+                            <TextBlock Text="Phone"
+                                       Style="{StaticResource SubtitleTextBlockStyle}"
+                                       Padding="0,10" />
+                            <TextBox Text="{Binding CandidateUser.Phone, Mode=TwoWay}" />
+
+                        </StackPanel>
+
+                        <Grid Margin="0,280,0,0"
+                              Background="#57c6e3">
+                            <TextBlock Text="{Binding TestDuration}"
+                                       FontSize="80"
+                                       Padding="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection Background="AliceBlue"
+                        Header="Questions">
+                <DataTemplate>
+
+                    <ListView x:Name="listView"
+                              ItemsSource="{Binding CandidateUser.AnswerTests}"
+                              Width="800"
+                              Padding="0,0,0,0"
+                              Margin="0,0,-40,0"
+                              SelectionMode="None"
+                              ItemContainerStyle="{StaticResource LvItemStyle}">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+
+                                    <TextBlock Text="{Binding Text}"
+                                               Style="{StaticResource TitleTextBlockStyle}"
+                                               TextWrapping="Wrap"
+                                               FontWeight="Bold"
+                                               FontSize="28"
+                                               LineHeight="50" />
+
+                                    <ListView ItemsSource="{Binding SuggestedAnswers}"
+                                              Margin="0,30"
+                                              SelectionMode="Single"
+                                              SelectionChanged="AnswersTestListView_SelectionChanged">
+
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Width="733">
+                                                    <Grid Height="2"
+                                                          Background="Gray"
+                                                          VerticalAlignment="Top"
+                                                          Opacity="0.2" />
+                                                    <TextBlock Text="{Binding ''}"
+                                                               Padding="20,20"
+                                                               Style="{StaticResource SubtitleTextBlockStyle}"
+                                                               TextWrapping="Wrap"
+                                                               FontSize="24" />
+                                                </Grid>
+
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+
+                                    </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection Padding="40,40"
+                        Header="Results">
+
+                <DataTemplate>
+
+                    <StackPanel Orientation="Vertical">
+
+                        <Grid VerticalAlignment="Top"
+                              Height="305"
+                              Margin="0,40,0,0">
+                            <dataVisualization:RadRadialGauge MaxValue="{Binding CandidateUser.AnswerTests.Count}"
+                                                              LabelStep="1"
+                                                              Padding="0"
+                                                              TickStep="1"
+                                                              Width="302"
+                                                              VerticalAlignment="Top"
+                                                              TickRadiusScale="0.7"
+                                                              LabelRadiusScale="0.6">
+
+                                <dataVisualization:RadRadialGauge.LabelTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"
+                                                   Margin="-5 0 0 0"
+                                                   Foreground="#595959" />
+                                    </DataTemplate>
+                                </dataVisualization:RadRadialGauge.LabelTemplate>
+
+                                <dataVisualization:SegmentedRadialGaugeIndicator StartValue="0"
+                                                                                 Value="{Binding CandidateUser.AnswerTests.Count}"
+                                                                                 dataVisualization:RadRadialGauge.IndicatorRadiusScale="0.75">
+                                    <dataVisualization:BarIndicatorSegment Thickness="2"
+                                                                           Stroke="#595959"
+                                                                           Length="{Binding CandidateUser.AnswerTests.Count}"
+                                                                           dataVisualization:RadRadialGauge.IndicatorRadiusScale="0.8" />
+                                </dataVisualization:SegmentedRadialGaugeIndicator>
+
+                                <dataVisualization:RadialBarGaugeIndicator IsAnimated="True"
+                                                                           Value="{Binding CandidateUser.AnswerTests.Count}"
+                                                                           Brush="Maroon"
+                                                                           Thickness="30"
+                                                                           dataVisualization:RadRadialGauge.IndicatorRadiusScale="0.9" />
+
+                                <dataVisualization:RadialBarGaugeIndicator IsAnimated="True"
+                                                                           Value="{Binding NumberOfAnsweredQuestions}"
+                                                                           Brush="DarkGreen"
+                                                                           Thickness="30"
+                                                                           dataVisualization:RadRadialGauge.IndicatorRadiusScale="0.9" />
+                            </dataVisualization:RadRadialGauge>
+
+                            <TextBlock Text="{Binding NumberOfAnsweredQuestions}"
+                                       Style="{StaticResource TitleTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="100"
+                                       FontWeight="Bold" />
+                            <TextBlock Text="Answered questions"
+                                       Style="{StaticResource TitleTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Margin="0,50,0,0" />
+                        </Grid>
+
+                        <Button Content="Submit answers"
+                                Command="{Binding SendAnswersCommand}"
+                                Padding="0,10"
+                                Background="#57c6e3"
+                                Foreground="AliceBlue"
+                                Width="303"
+                                FontSize="20"
+                                Margin="0,-40,0,0" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Background="DarkGreen"
+                                    Margin="0,50,0,0">
+                            <TextBlock Text="Your final score is "
+                                       VerticalAlignment="Bottom"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Margin="10" />
+                            <TextBlock Text="{Binding Score}"
+                                       VerticalAlignment="Center"
+                                       FontSize="100"
+                                       Foreground="White" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+
+            </HubSection>
+
+        </Hub>
+
+        <Grid Visibility="{Binding IsErrorMessageVisible, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid Background="Black"
+                  Opacity="0.9" />
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                
+                <TextBlock  Text="{Binding ErrorMessage}"
+                            Style="{StaticResource TitleTextBlockStyle}"
+                            FontSize="60"
+                            Foreground="White"
+                            LineHeight="80" />
+                <Button Content="Ok"
+                        Command="{Binding HideErrorMessageCommand}"
+                        FontSize="40"
+                        Width="300"
+                        HorizontalAlignment="Right"
+                        Background="Maroon"
+                        Foreground="White"
+                        Margin="0,40,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <primitives:RadBusyIndicator AnimationStyle="AnimationStyle3"
+                                     IsActive="{Binding IsBusy}"
+                                     Background="#fab13a" />
+
+        <Grid Visibility="{Binding IsTestStarted, Converter={StaticResource BooleanToNonVisibilityConverter}}"
+              d:IsHidden="True">
+            <Grid Background="#89cb2a" />
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Take 5 minutes to prove you are a geek!"
+                           FontSize="80"
+                           Foreground="White" />
+                <Button Content="Go"
+                        Command="{Binding StartTestCommand}"
+                        FontSize="60"
+                        Width="400"
+                        Foreground="White"
+                        Background="Maroon"
+                        HorizontalAlignment="Right"
+                        Margin="0,40,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <!--<Grid>
+            <TextBlock Text="Time is up!"></TextBlock>
+        </Grid>-->
+        
+    </Grid>
+</Page>

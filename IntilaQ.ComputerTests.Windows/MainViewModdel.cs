@@ -2,15 +2,12 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
-using GalaSoft.MvvmLight.Command;
-using IntilaQ.ComputerTests.Client.Mappers;
 using IntilaQ.ComputerTests.Client.Models;
 using IntilaQ.ComputerTests.Client.Services;
-using RelayCommand = IntilaQ.ComputerTests.Client.Tools.RelayCommand;
+using IntilaQ.ComputerTests.Client.Tools;
 
 namespace IntilaQ.ComputerTests.Client.ViewModels
 {
@@ -29,7 +26,7 @@ namespace IntilaQ.ComputerTests.Client.ViewModels
         private DateTime _testStartedAtDateTime;
 
         private string _testDuration = "00:00";
-        private bool _isTestFinished;
+        //private bool _isTestFinished;
 
         public CandidateUser CandidateUser
         {
@@ -111,15 +108,15 @@ namespace IntilaQ.ComputerTests.Client.ViewModels
             }
         }
 
-        public bool IsTestFinished
-        {
-            get { return _isTestFinished; }
-            set
-            {
-                _isTestFinished = value; 
-                OnPropertyChanged();
-            }
-        }
+        //public bool IsTestFinished
+        //{
+        //    get { return _isTestFinished; }
+        //    set
+        //    {
+        //        _isTestFinished = value; 
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public ICommand HideErrorMessageCommand
         {
@@ -252,9 +249,10 @@ namespace IntilaQ.ComputerTests.Client.ViewModels
                     secondsSinceTestStarted);
 
                 //end of test
-                if (timeSinceTestStarted.Minutes == 5)
+                if (timeSinceTestStarted.Minutes == 0
+                    && timeSinceTestStarted.Seconds <= 0)
                 {
-                    IsTestFinished = true;
+                    //IsTestFinished = true;
                     IsTestStarted = false;
                 }
             };

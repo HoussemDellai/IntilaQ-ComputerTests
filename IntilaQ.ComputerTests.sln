@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntilaQ.ComputerTests.Web",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{232D5583-43E8-4721-A2DB-0D5E8BC06A71}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{8B1AB853-E680-4EB9-889C-B621DC9B9ACB}"
+	ProjectSection(SolutionItems) = preProject
+		Screenshots\windows1.png = Screenshots\windows1.png
+		Screenshots\windows2.png = Screenshots\windows2.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,5 +95,6 @@ Global
 		{E43D10B8-9315-4544-A6DC-C00DAE3B1084} = {232D5583-43E8-4721-A2DB-0D5E8BC06A71}
 		{E47AF1EC-8310-4416-82BE-EA8C24ECCA61} = {232D5583-43E8-4721-A2DB-0D5E8BC06A71}
 		{1668536D-0951-4CF8-9583-F0E5A0994117} = {1E1F5E4E-5B3C-4BCB-9918-3A4D0E40A454}
+		{8B1AB853-E680-4EB9-889C-B621DC9B9ACB} = {232D5583-43E8-4721-A2DB-0D5E8BC06A71}
 	EndGlobalSection
 EndGlobal

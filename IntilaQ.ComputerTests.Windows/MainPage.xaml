@@ -70,12 +70,6 @@
 
     <Grid Background="AliceBlue">
 
-        <Image Source="Assets/intilaq.png"
-               VerticalAlignment="Bottom"
-               HorizontalAlignment="Left"
-               Width="200"
-               Margin="80,40" />
-
         <Hub Header="IntilaQ testing platform">
             <Hub.HeaderTemplate>
                 <DataTemplate>
@@ -90,7 +84,7 @@
             <HubSection Padding="80,40,40,0"
                         Header="Your profile">
                 <DataTemplate>
-                    <Grid>
+                    <StackPanel>
                         <StackPanel Orientation="Vertical"
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Center"
@@ -111,7 +105,7 @@
 
                         </StackPanel>
 
-                        <Grid Margin="0,280,0,0"
+                        <Grid Margin="0,40,0,0"
                               Background="#57c6e3">
                             <TextBlock Text="{Binding TestDuration}"
                                        FontSize="80"
@@ -120,7 +114,14 @@
                                        VerticalAlignment="Center"
                                        Foreground="White"/>
                         </Grid>
-                    </Grid>
+
+                        <Image Source="Assets/intilaq.png"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Left"
+                               Width="200"
+                               Margin="0,40,0,0" />
+
+                    </StackPanel>
                 </DataTemplate>
             </HubSection>
 

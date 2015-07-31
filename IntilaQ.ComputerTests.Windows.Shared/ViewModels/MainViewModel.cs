@@ -4,14 +4,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.UI.Xaml;
 using IntilaQ.ComputerTests.Client.Models;
 using IntilaQ.ComputerTests.Client.Services;
 using IntilaQ.ComputerTests.Client.Tools;
+using Windows.UI.Xaml;
 
 namespace IntilaQ.ComputerTests.Client.ViewModels
 {
-    public class MainViewModdel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
 
         private CandidateUser _candidateUser;
@@ -203,7 +203,7 @@ namespace IntilaQ.ComputerTests.Client.ViewModels
             return true;
         }
 
-        public MainViewModdel()
+        public MainViewModel()
         {
 
             InitializeTimers();
@@ -222,7 +222,7 @@ namespace IntilaQ.ComputerTests.Client.ViewModels
             //{
             //    IsTestStarted = false;
             //};
-
+            
             _testPeriodDispatcherTimer = new DispatcherTimer
             {
                 Interval = new TimeSpan(0, 0, 1),

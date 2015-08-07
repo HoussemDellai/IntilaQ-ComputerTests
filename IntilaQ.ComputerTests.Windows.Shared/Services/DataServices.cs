@@ -20,7 +20,7 @@ namespace IntilaQ.ComputerTests.Client.Services
             var httpClient = new HttpClient();
 
             var eventItemsJson =
-                await httpClient.GetStringAsync(BaseUrl + "api/Tests");
+                await httpClient.GetStringAsync(BaseUrl + "api/QuestionTests");
 
             return JsonConvert.DeserializeObject<List<AnswerTest>>(eventItemsJson);
         }

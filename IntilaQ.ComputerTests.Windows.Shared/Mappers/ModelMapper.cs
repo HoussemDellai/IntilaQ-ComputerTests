@@ -14,7 +14,7 @@ namespace IntilaQ.ComputerTests.Client.Mappers
             return new AnswerTest
             {
                 Text = questionTest.Text,
-                SuggestedAnswers = questionTest.SuggestedAnswers,
+                SuggestedAnswers = questionTest.SuggestedAnswers.ToList(),
             };
         }
 

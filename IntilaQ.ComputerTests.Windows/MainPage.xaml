@@ -160,7 +160,7 @@
                                                           Background="Gray"
                                                           VerticalAlignment="Top"
                                                           Opacity="0.2" />
-                                                    <TextBlock Text="{Binding ''}"
+                                                    <TextBlock Text="{Binding Text}"
                                                                Padding="20,20"
                                                                Style="{StaticResource SubtitleTextBlockStyle}"
                                                                TextWrapping="Wrap"

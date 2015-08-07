@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="IntilaQ.IntilaQTestingPlatform" Publisher="CN=686185AB-C8C3-46DB-B3A7-439EE9E7924D" Version="1.1.0.1" />
+  <Identity Name="IntilaQ.IntilaQTestingPlatform" Publisher="CN=686185AB-C8C3-46DB-B3A7-439EE9E7924D" Version="1.1.0.6" />
   <Properties>
     <DisplayName>IntilaQ Testing Platform</DisplayName>
     <PublisherDisplayName>IntilaQ</PublisherDisplayName>

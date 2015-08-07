@@ -16,7 +16,7 @@ namespace IntilaQ.ComputerTests.Client.Models
         /// </summary>
         public string Text { get; set; }
 
-        public List<string> SuggestedAnswers { get; set; }
+        public List<SuggestedAnswer> SuggestedAnswers { get; set; }
 
         public string RightAnswer { get; set; }
     }

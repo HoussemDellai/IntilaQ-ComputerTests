@@ -11,11 +11,11 @@ namespace IntilaQ.ComputerTests.Client.Models
 
         public int Id { get; set; }
 
-        public int QuestionTestId { get; set; }
+        //public int QuestionTestId { get; set; }
 
         public string Text { get; set; }
 
-        public List<string> SuggestedAnswers { get; set; }
+        public List<SuggestedAnswer> SuggestedAnswers { get; set; }
 
         public string ChosenAnswer { get; set; }
     }

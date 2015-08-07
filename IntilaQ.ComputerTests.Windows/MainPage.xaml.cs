@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
+using IntilaQ.ComputerTests.Client.Models;
 using IntilaQ.ComputerTests.Client.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -28,7 +29,7 @@ namespace IntilaQ.ComputerTests.Windows
                 vm.CandidateUser.AnswerTests
                     .First(test => test.SuggestedAnswers == suggestedAnswersListView.ItemsSource)
                     .ChosenAnswer =
-                    suggestedAnswersListView.SelectedItem as string;
+                    (suggestedAnswersListView.SelectedItem as SuggestedAnswer).Text;
             }
 
             vm.SetNumberOfAnsweredQuestionsCommand.Execute(null);

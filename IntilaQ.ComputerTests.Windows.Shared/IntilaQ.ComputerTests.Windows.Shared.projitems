@@ -14,9 +14,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mappers\ModelMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AnswerTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\CandidateTestRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\CandidateUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\QuestionTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SuggestedAnswer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DataServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />

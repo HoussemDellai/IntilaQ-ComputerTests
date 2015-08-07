@@ -213,16 +213,6 @@ namespace IntilaQ.ComputerTests.Client.ViewModels
 
         private void InitializeTimers()
         {
-            //_dispatcherTimer = new DispatcherTimer
-            //{
-            //    Interval = new TimeSpan(0, 5, 0),
-            //};
-
-            //_dispatcherTimer.Tick += (sender, o) =>
-            //{
-            //    IsTestStarted = false;
-            //};
-            
             _testPeriodDispatcherTimer = new DispatcherTimer
             {
                 Interval = new TimeSpan(0, 0, 1),
